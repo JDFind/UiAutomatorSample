@@ -72,13 +72,6 @@ public class YoutubeTests {
 
         mDevice.pressEnter();
 
-        /* NOT WORKING:
-        UiSelector searchedTitleSelector = new UiSelector()
-                    .resourceIdMatches(".*title")
-                    .textContains("Android Testing Patterns #1")
-                    .fromParent(listItemContainerSelector);
-        */
-
         // Match the video title, knowing that is contained by an element of the Videos List
         UiSelector listItemContainerSelector = new UiSelector().resourceIdMatches(".*video_info_view");
         UiSelector searchedTitleSelector = listItemContainerSelector.childSelector(new UiSelector()
@@ -88,8 +81,7 @@ public class YoutubeTests {
         // check if the desired video is listed
         UiObject searchedTitle = mDevice.findObject(searchedTitleSelector);
         assertTrue(searchedTitle.waitForExists(DEFAULT_TIMEOUT));
-
-        // NOT WORKING: assertTrue(searchedTitle.clickAndWaitForNewWindow());
+        
         searchedTitle.click();
 
         // check if a video is being played
